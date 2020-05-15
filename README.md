@@ -1,14 +1,44 @@
-# jsonserializableextensiong
+# Json Serialization Extension
 
 Generate extension for JSON factory and toJson
 
 ## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+1. Add <a href="https://pub.dev/packages/json_serializable">json_serializable</a> first
+2. In `dev_dependencies` add
+```
+dev_dependencies:
+  json_extension_gen:
+    git:
+      url: git://github.com/Syaba999/json_extension_gen
+```
+3. Run `flutter pub upgrade`
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## Usage example
+
+1. Create class with `@JsonSerializable()` annotation
+```
+part 'user.g.dart'
+
+@JsonSerializable()
+class User {
+  final String name;
+  final int age;
+
+  A(this.name, this.age);
+}
+```
+2. Run `flutter pub run build_runner build`
+
+3. It's all :)
+
+   For convert to JSON use
+   ```
+   User user = User("Adam", 23);
+   Map<String, dynamic> json = user.toJson();
+   ```
+   For create object from JSON use extension with name `ClassNameFromJson`, method `parse`
+   ```
+   Map<String, dynamic> json = { "name":"Adam", "age":23 };
+   User user = UserFromJson.parse(json);
+   ```

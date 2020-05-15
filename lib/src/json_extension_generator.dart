@@ -10,9 +10,10 @@ class JsonExtensionGenerator extends GeneratorForAnnotation<JsonSerializable> {
     if (element is! ClassElement) throw "$element is not a ClassElement";
     final ClassElement classElement = element as ClassElement;
     return '''
-     extension ${classElement.name}JsonSerializableExtension on ${classElement.name} {
-       Map<String, dynamic> toJson() => _\$${classElement.name}ToJson(this);
-     }
+      extension ${classElement.name}FromJson on ${classElement.name} {
+        static parse(Map<String, dynamic> json) => _\$${classElement.name}FromJson(json);
+        Map<String, dynamic> toJson() => _\$${classElement.name}ToJson(this);
+      }
     ''';
   }
 }
