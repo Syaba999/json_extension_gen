@@ -24,7 +24,7 @@ part 'user.g.dart'
 class User {
   final String name;
   final int age;
-
+  
   A(this.name, this.age);
 }
 ```
