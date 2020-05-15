@@ -11,7 +11,6 @@ class JsonExtensionGenerator extends GeneratorForAnnotation<JsonSerializable> {
     final ClassElement classElement = element as ClassElement;
     return '''
      extension ${classElement.name}JsonSerializableExtension on ${classElement.name} {
-       static ${classElement.name} fromJson(Map<String, dynamic> json) => _\$${classElement.name}FromJson(json);
        Map<String, dynamic> toJson() => _\$${classElement.name}ToJson(this);
      }
     ''';
