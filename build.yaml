@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      json_extension_gen|json_serializable:
+        enabled: true
+
+builders:
+  json_extension_gen:
+    target: ":json_extension_gen"
+    import: "package:json_extension_gen/builder.dart"
+    builder_factories: ["jsonExtension"]
+    build_extensions: {".dart": ["json_extension_gen.g.part"]}
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
